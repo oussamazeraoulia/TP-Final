@@ -65,9 +65,9 @@
 
     <script>
         const uploadForm = document.getElementById('upload-form');
-        const chatForm = document.getElementById('chat-form');
-        const responseDiv = document.getElementById('response');
-        const fileContentDiv = document.getElementById('file-content');
+        // const chatForm = document.getElementById('chat-form');
+        // const responseDiv = document.getElementById('response');
+        // const fileContentDiv = document.getElementById('file-content');
 
         uploadForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -80,16 +80,16 @@
             fileContentDiv.textContent = data.content || "Le fichier est vide ou invalide.";
         });
 
-        chatForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const formData = new FormData(chatForm);
-            const response = await fetch('/chat/', {
-                method: 'POST',
-                body: formData,
-            });
-            const data = await response.json();
-            responseDiv.textContent = data.response;
-        });
+        // chatForm.addEventListener('submit', async (e) => {
+        //     e.preventDefault();
+        //     const formData = new FormData(chatForm);
+        //     const response = await fetch('/chat/', {
+        //         method: 'POST',
+        //         body: formData,
+        //     });
+        //     const data = await response.json();
+        //     responseDiv.textContent = data.response;
+        // });
     </script>
 </body>
 </html>
