@@ -45,10 +45,51 @@
 
             <div class="p-4">
                 <h1 class="text-2xl font-bold">Chatbot </h1>
-                <p class="mt-2 text-gray-600">Raising tomorrow's leaders.</p>
+                <p class="mt-2 text-gray-600"></p>
+
+                <!-- File Upload -->
+                <form id="upload-form" class="mb-4">
+                    <input type="file" name="file" id="file" class="border p-2 rounded mb-4 w-full" />
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">télécharger le fichier</button>
+                </form>
+
+                <!-- Affichage du contenu du fichier -->
+                <div id="file-content" class="bg-gray-100 p-4 rounded shadow-sm mb-4 overflow-auto max-h-60">
+                    
+                </div>
+
             </div>
         </div>
         
     </div>
+
+    <script>
+        const uploadForm = document.getElementById('upload-form');
+        const chatForm = document.getElementById('chat-form');
+        const responseDiv = document.getElementById('response');
+        const fileContentDiv = document.getElementById('file-content');
+
+        uploadForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(uploadForm);
+            const response = await fetch('/upload/', {
+                method: 'POST',
+                body: formData,
+            });
+            const data = await response.json();
+            fileContentDiv.textContent = data.content || "Le fichier est vide ou invalide.";
+        });
+
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(chatForm);
+            const response = await fetch('/chat/', {
+                method: 'POST',
+                body: formData,
+            });
+            const data = await response.json();
+            responseDiv.textContent = data.response;
+        });
+    </script>
 </body>
 </html>
