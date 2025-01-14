@@ -26,10 +26,10 @@ async def recherche(request: Request):
     return templates.TemplateResponse("recherche.html", context)
 
 
-# uploaded_content = ""
+uploaded_content = ""
 
-# @app.post("/upload/")
-# async def upload_file(file: UploadFile = File(...)):
-#     global uploaded_content
-#     uploaded_content = (await file.read()).decode("utf-8")
-#     return {"filename": file.filename, "content": uploaded_content}
+@app.post("/upload/")
+async def upload_file(file: UploadFile = File(...)):
+    global uploaded_content
+    uploaded_content = (await file.read()).decode("utf-8")
+    return {"filename": file.filename, "content": uploaded_content}
