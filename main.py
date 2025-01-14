@@ -10,7 +10,17 @@ templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.get("/", response_class=HTMLResponse)
-async def read_root(request: Request):
-    context = {"request": request, "title": "Welcome to FastAPI"}
+async def index(request: Request):
+    context = {"request": request, "title": "Page pricipale"}
     return templates.TemplateResponse("index.html", context)
 
+@app.get("/chatbot/", response_class=HTMLResponse)
+async def chatbot(request: Request):
+    context = {"request": request, "title": "Chatbot"}
+    return templates.TemplateResponse("chatbot.html", context)
+
+
+@app.get("/recherche/", response_class=HTMLResponse)
+async def recherche(request: Request):
+    context = {"request": request, "title": "Recherche dans un document"}
+    return templates.TemplateResponse("recherche.html", context)
